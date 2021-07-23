@@ -33,6 +33,7 @@ function gameOver(pacman, grid) {
   startButton.classList.remove("hide");
   currentScore.classList.add("blink_me");
   highScore.classList.add("blink_me");
+  startButton.innerText = "RETRY";
 }
 
 function checkCollision(pacman, ghosts) {
@@ -71,6 +72,8 @@ function startGame() {
   score = 0;
 
   startButton.classList.add("hide");
+  currentScore.classList.remove("blink_me");
+  highScore.classList.remove("blink_me");
 
   gameBoard.createGrid(MAZE);
 

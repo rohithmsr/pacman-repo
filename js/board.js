@@ -17,7 +17,7 @@ class Board {
     const div = document.createElement("div");
     div.classList.add("game-status");
     div.innerHTML = `${gameWin ? "WIN" : "GAME OVER"}`;
-    div.style.color = `${gameWin ? "green" : "red"}`;
+    div.style.color = `${gameWin ? "#7fff00" : "red"}`;
     this.DOMGrid.appendChild(div);
   }
 

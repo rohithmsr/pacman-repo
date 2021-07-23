@@ -50,6 +50,14 @@ body {
 
 #start-button {
   z-index: 1000;
+  cursor: pointer;
+}
+
+#start-button:hover {
+  z-index: 1000;
+  cursor: pointer;
+  color: white;
+  background-color: blue;
 }
 
 .game-status {
