@@ -1,0 +1,30 @@
+{
+  "name": "pacman-repo",
+  "version": "1.0.0",
+  "description": "Here's yet another clone of Pacman",
+  "main": "index.html",
+  "scripts": {
+    "start": "parcel index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rohithmsr/pacman-repo.git"
+  },
+  "keywords": [
+    "pacman",
+    "rohithmsr",
+    "rohithmsr-pacman-clone",
+    "japanese",
+    "japanese-games"
+  ],
+  "author": "rohithmsr",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rohithmsr/pacman-repo/issues"
+  },
+  "homepage": "https://github.com/rohithmsr/pacman-repo#readme",
+  "dependencies": {
+    "parcel": "^2.0.0-beta.2"
+  }
+}
