@@ -21,6 +21,20 @@ let gameWin = false;
 let powerPillActive = false;
 let powerPillTimer = null;
 
+function gameOver(pacman, grid) {
+  document.removeEventListener("keydown", (e) =>
+    pacman.handleKeyInput(e, gameBoard.objectExists.bind(gameBoard))
+  );
+
+  gameBoard.showGameStatus(gameWin);
+
+  clearInterval(timer);
+  // Show startbutton
+  startButton.classList.remove("hide");
+  currentScore.classList.add("blink_me");
+  highScore.classList.add("blink_me");
+}
+
 function checkCollision(pacman, ghosts) {
   const collidedGhost = ghosts.find((ghost) => pacman.pos === ghost.pos);
 
@@ -32,11 +46,12 @@ function checkCollision(pacman, ghosts) {
         collidedGhost.name,
       ]);
       collidedGhost.pos = collidedGhost.startPos;
-      score += 100;
+      score += 200;
     } else {
       gameBoard.removeObject(pacman.pos, [OBJECT_TYPE.PACMAN]);
       gameBoard.rotateDiv(pacman.pos, 0);
-      console.warn("Collided, game over!");
+      //   console.warn("Collided, game over!");
+      gameOver(pacman, gameGrid);
     }
   }
 }
