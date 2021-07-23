@@ -21,10 +21,33 @@ let gameWin = false;
 let powerPillActive = false;
 let powerPillTimer = null;
 
+function checkCollision(pacman, ghosts) {
+  const collidedGhost = ghosts.find((ghost) => pacman.pos === ghost.pos);
+
+  if (collidedGhost) {
+    if (pacman.powerPill) {
+      gameBoard.removeObject(collidedGhost.pos, [
+        OBJECT_TYPE.GHOST,
+        OBJECT_TYPE.SCARED,
+        collidedGhost.name,
+      ]);
+      collidedGhost.pos = collidedGhost.startPos;
+      score += 100;
+    } else {
+      gameBoard.removeObject(pacman.pos, [OBJECT_TYPE.PACMAN]);
+      gameBoard.rotateDiv(pacman.pos, 0);
+      console.warn("Collided, game over!");
+    }
+  }
+}
+
 function gameLoop(pacman, ghosts) {
   gameBoard.moveCharacter(pacman);
+  checkCollision(pacman, ghosts); // For Pacman
 
   ghosts.forEach((ghost) => gameBoard.moveCharacter(ghost));
+  checkCollision(pacman, ghosts); // For Ghosts
+  // Sometimes if gets delayed to check collision, so call function 2 times
 }
 
 function startGame() {
