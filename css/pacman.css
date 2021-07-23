@@ -1,0 +1,190 @@
+@font-face {
+  font-family: "Quadrit";
+  src: url("../fonts/Quadrit.ttf");
+}
+
+* {
+  box-sizing: border-box;
+  font-family: Quadrit, sans-serif;
+}
+
+body {
+  background-color: #0f0f0fda;
+  background-size: cover;
+}
+
+#wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#title {
+  font-size: 2rem;
+  color: yellow;
+}
+
+#score {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 60vw;
+  min-width: 460px;
+  height: 40px;
+  border: 2px darkblue solid;
+  background: black;
+  margin: 8px 0px;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1em;
+}
+
+#game {
+  position: relative;
+  display: inline-grid;
+  background: black;
+  padding: 10px;
+}
+
+#start-button {
+  z-index: 1000;
+}
+
+.game-status {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 90%;
+  background: transparent;
+  color: red;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.hide {
+  display: none;
+}
+
+.blink_me {
+  animation: blinker 1s linear infinite;
+}
+
+.square {
+  display: block;
+}
+
+.blank {
+  background: black;
+}
+
+.wall {
+  /* border: 1px solid blue; */
+  color: white;
+}
+
+.dot {
+  background: white;
+  border: 8px solid black;
+  border-radius: 50%;
+}
+
+.pill {
+  background: white;
+  border: 5px solid black;
+  border-radius: 50%;
+}
+
+.ghost {
+  position: relative;
+  border-radius: 10px 10px 2px 2px;
+  border: none;
+}
+
+.ghost::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: black;
+  border-radius: 50%;
+  left: 3px;
+  top: 5px;
+  border: 2px solid white;
+}
+
+.ghost::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: black;
+  border-radius: 50%;
+  right: 3px;
+  top: 5px;
+  border: 2px solid white;
+}
+
+.scared {
+  background: blue !important;
+}
+
+.blinky {
+  background: red;
+}
+
+.pinky {
+  background: pink;
+}
+
+.inky {
+  background: cyan;
+}
+
+.clyde {
+  background: orange;
+}
+
+.pacman {
+  background: yellow;
+  border: none;
+  border-radius: 50%;
+  clip-path: polygon(
+    0 0,
+    20px 0,
+    20px -5px,
+    8px 10px,
+    20px 25px,
+    20px 20px,
+    0 20px
+  );
+
+  animation: chew 0.3s linear forwards infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes chew {
+  50% {
+    clip-path: polygon(
+      0 0,
+      20px 0,
+      20px 10px,
+      8px 10px,
+      20px 10px,
+      20px 20px,
+      0 20px
+    );
+  }
+}
