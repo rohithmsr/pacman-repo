@@ -4,12 +4,12 @@ export const CELL_SIZE = 20;
 export const DIRECTIONS = {
   ArrowLeft: {
     code: 37,
-    movement: -1,
+    movement: -1, // move within the row
     rotation: 180,
   },
   ArrowUp: {
     code: 38,
-    movement: -GRID_SIZE,
+    movement: -GRID_SIZE, // move between columns
     rotation: 270,
   },
   ArrowRight: {

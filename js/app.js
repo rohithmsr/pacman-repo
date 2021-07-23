@@ -19,6 +19,10 @@ let gameWin = false;
 let powerPillActive = false;
 let powerPillTimer = null;
 
+function gameLoop(pacman) {
+  gameBoard.moveCharacter(pacman);
+}
+
 function startGame() {
   gameWin = false;
   powerPillActive = false;
@@ -33,6 +37,8 @@ function startGame() {
   document.addEventListener("keydown", (e) => {
     pacman.handleKeyInput(e, gameBoard.objectExists.bind(gameBoard));
   });
+
+  timer = setInterval(() => gameLoop(pacman), GLOBAL_SPEED);
 }
 
 // Initialize Game

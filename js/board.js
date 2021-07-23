@@ -66,6 +66,28 @@ class Board {
     this.grid[pos].style.transform = `rotate(${deg}deg)`;
   }
 
+  // Works for both ghosts and pacman
+  moveCharacter(character) {
+    if (character.shouldMove()) {
+      const { nextMovePos, direction } = character.getNextMove(
+        this.objectExists.bind(this)
+      );
+      const { classesToRemove, classesToAdd } = character.makeMove();
+
+      // ghost can't rotate
+      // if pacman isn't moving, then don't rotate
+      if (character.rotation && nextMovePos !== character.pos) {
+        this.rotateDiv(nextMovePos, character.dir.rotation);
+        this.rotateDiv(character.pos, 0); // if ghost is present there, then it will roate, so add 0 in prev cell also
+      }
+
+      this.removeObject(character.pos, classesToRemove);
+      this.addObject(nextMovePos, classesToAdd);
+
+      character.setNewPos(nextMovePos, direction);
+    }
+  }
+
   static createGameBoard(DOMGrid, maze) {
     const board = new this(DOMGrid);
     board.createGrid(maze);
