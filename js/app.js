@@ -1,6 +1,7 @@
 import { MAZE, OBJECT_TYPE } from "../starter";
 
 import Board from "./board";
+import Pacman from "./pacman";
 
 const gameGrid = document.querySelector("#game");
 const scoreTable = document.querySelector("#score");
@@ -17,3 +18,22 @@ let timer = null;
 let gameWin = false;
 let powerPillActive = false;
 let powerPillTimer = null;
+
+function startGame() {
+  gameWin = false;
+  powerPillActive = false;
+  score = 0;
+
+  startButton.classList.add("hide");
+
+  gameBoard.createGrid(MAZE);
+
+  const pacman = new Pacman(2, 287);
+  gameBoard.addObject(287, [OBJECT_TYPE.PACMAN]);
+  document.addEventListener("keydown", (e) => {
+    pacman.handleKeyInput(e, gameBoard.objectExists.bind(gameBoard));
+  });
+}
+
+// Initialize Game
+startButton.addEventListener("click", startGame);
