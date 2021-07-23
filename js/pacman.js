@@ -9,6 +9,7 @@ class Pacman {
     this.rotation = true;
 
     this.powerPill = false;
+    this.ghostCombo = 1;
   }
 
   shouldMove() {

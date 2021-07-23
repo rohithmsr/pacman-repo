@@ -29,6 +29,7 @@ class Board {
 
     maze.forEach((square) => {
       const div = document.createElement("div");
+      div.innerText = "";
 
       if (square >= 12) {
         div.classList.add("square", "wall");
@@ -42,7 +43,7 @@ class Board {
         div.classList.add("square", CLASSES[square]);
       }
 
-      div.style.cssText = `width: ${CELL_SIZE}px; height: ${CELL_SIZE}px;`;
+      div.style.cssText = `width: ${CELL_SIZE}px; height: ${CELL_SIZE}px;font-size: 8px; color: green;`;
       this.DOMGrid.appendChild(div);
       this.grid.push(div);
 

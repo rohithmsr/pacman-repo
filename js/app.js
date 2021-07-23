@@ -14,6 +14,9 @@ const highScore = document.querySelector("#high-score");
 const POWER_PILL_TIME = 10000; // milliseconds
 const GLOBAL_SPEED = 100;
 const gameBoard = Board.createGameBoard(gameGrid, MAZE);
+const DOT_SCORE = 10;
+const POWER_PILL_SCORE = 50;
+const GHOST_COMBO_SCORE = 200;
 
 let score = 0;
 let timer = null;
@@ -40,14 +43,22 @@ function checkCollision(pacman, ghosts) {
   const collidedGhost = ghosts.find((ghost) => pacman.pos === ghost.pos);
 
   if (collidedGhost) {
-    if (pacman.powerPill) {
+    if (pacman.powerPill && collidedGhost.isScared) {
       gameBoard.removeObject(collidedGhost.pos, [
         OBJECT_TYPE.GHOST,
         OBJECT_TYPE.SCARED,
         collidedGhost.name,
       ]);
+      const pac = document.getElementsByClassName("pacman")[0];
+
       collidedGhost.pos = collidedGhost.startPos;
-      score += 200;
+      collidedGhost.isScared = false;
+      score += pacman.ghostCombo * GHOST_COMBO_SCORE;
+
+      pac.innerText = pacman.ghostCombo * GHOST_COMBO_SCORE;
+      pacman.ghostCombo += 1;
+
+      setTimeout(() => (pac.innerText = ""), 3000, pac);
     } else {
       gameBoard.removeObject(pacman.pos, [OBJECT_TYPE.PACMAN]);
       gameBoard.rotateDiv(pacman.pos, 0);
@@ -64,6 +75,44 @@ function gameLoop(pacman, ghosts) {
   ghosts.forEach((ghost) => gameBoard.moveCharacter(ghost));
   checkCollision(pacman, ghosts); // For Ghosts
   // Sometimes if gets delayed to check collision, so call function 2 times
+
+  // Check if Pacman eats a dot
+  if (gameBoard.objectExists(pacman.pos, OBJECT_TYPE.DOT)) {
+    gameBoard.removeObject(pacman.pos, [OBJECT_TYPE.DOT]);
+    // Remove a dot
+    gameBoard.dotCount--;
+    // Add Score
+    score += DOT_SCORE;
+  }
+
+  // Check if Pacman eats a power pill
+  if (gameBoard.objectExists(pacman.pos, OBJECT_TYPE.PILL)) {
+    gameBoard.removeObject(pacman.pos, [OBJECT_TYPE.PILL]);
+
+    pacman.powerPill = true;
+    score += POWER_PILL_SCORE;
+
+    clearTimeout(powerPillTimer);
+    powerPillTimer = setTimeout(() => {
+      pacman.powerPill = false;
+      pacman.ghostCombo = 1;
+    }, POWER_PILL_TIME);
+  }
+
+  // Change ghost scare mode depending on powerpill
+  if (pacman.powerPill !== powerPillActive) {
+    powerPillActive = pacman.powerPill;
+    ghosts.forEach((ghost) => (ghost.isScared = pacman.powerPill));
+  }
+
+  // Check if all dots have been eaten
+  if (gameBoard.dotCount === 0) {
+    gameWin = true;
+    gameOver(pacman, gameGrid);
+  }
+  // Show new score
+  currentScore.innerText = `SCORE = ${score}`;
+  highScore.innerText = `HIGHSCORE = ${score}`;
 }
 
 function startGame() {
@@ -77,8 +126,8 @@ function startGame() {
 
   gameBoard.createGrid(MAZE);
 
-  const pacman = new Pacman(2, 287);
-  gameBoard.addObject(287, [OBJECT_TYPE.PACMAN]);
+  const pacman = new Pacman(2, 367);
+  gameBoard.addObject(pacman.pos, [OBJECT_TYPE.PACMAN]);
   document.addEventListener("keydown", (e) => {
     pacman.handleKeyInput(e, gameBoard.objectExists.bind(gameBoard));
   });
