@@ -1,7 +1,9 @@
 import { MAZE, OBJECT_TYPE } from "../starter";
+import { randomMovement } from "./movement";
 
 import Board from "./board";
 import Pacman from "./pacman";
+import Ghost from "./ghost";
 
 const gameGrid = document.querySelector("#game");
 const scoreTable = document.querySelector("#score");
@@ -19,8 +21,10 @@ let gameWin = false;
 let powerPillActive = false;
 let powerPillTimer = null;
 
-function gameLoop(pacman) {
+function gameLoop(pacman, ghosts) {
   gameBoard.moveCharacter(pacman);
+
+  ghosts.forEach((ghost) => gameBoard.moveCharacter(ghost));
 }
 
 function startGame() {
@@ -38,7 +42,15 @@ function startGame() {
     pacman.handleKeyInput(e, gameBoard.objectExists.bind(gameBoard));
   });
 
-  timer = setInterval(() => gameLoop(pacman), GLOBAL_SPEED);
+  // diff speed ghosts
+  const ghosts = [
+    new Ghost(5, 188, randomMovement, OBJECT_TYPE.BLINKY),
+    new Ghost(4, 187, randomMovement, OBJECT_TYPE.PINKY),
+    new Ghost(3, 186, randomMovement, OBJECT_TYPE.INKY),
+    new Ghost(2, 185, randomMovement, OBJECT_TYPE.CLYDE),
+  ];
+
+  timer = setInterval(() => gameLoop(pacman, ghosts), GLOBAL_SPEED);
 }
 
 // Initialize Game

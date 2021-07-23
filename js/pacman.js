@@ -1,7 +1,7 @@
 import { OBJECT_TYPE, DIRECTIONS } from "../starter";
 
 class Pacman {
-  constructor(speed, startPos) {
+  constructor(speed = 2, startPos) {
     this.pos = startPos;
     this.speed = speed;
     this.dir = null;
