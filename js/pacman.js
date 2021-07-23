@@ -4,7 +4,7 @@ class Pacman {
   constructor(speed = 2, startPos) {
     this.pos = startPos;
     this.speed = speed;
-    this.dir = null;
+    this.dir = DIRECTIONS["ArrowRight"]; // stating direction
     this.timer = 0; // can move next step only if timer reaches the speed
     this.rotation = true;
 
@@ -26,6 +26,7 @@ class Pacman {
 
   getNextMove(objectExists) {
     let nextMovePos = this.pos + this.dir.movement;
+    const pac = document.getElementsByClassName("pacman")[0];
 
     //Corridor
     if (this.pos === 220 && this.dir.code === 37) {
@@ -41,6 +42,20 @@ class Pacman {
       objectExists(nextMovePos, OBJECT_TYPE.GHOSTLAIR)
     ) {
       nextMovePos = this.pos;
+
+      pac.style.animationPlayState = "paused";
+      if (this.dir.code === 37) {
+        pac.style.tranform = "transform: rotate(180deg);";
+      } else if (this.dir.code === 38) {
+        pac.style.tranform = "transform: rotate(270deg);";
+      } else if (this.dir.code === 40) {
+        pac.style.tranform = "transform: rotate(90deg);";
+      } else {
+        pac.style.tranform = "transform: rotate(0deg);";
+      }
+    } else {
+      pac.style.tranform = "transform: rotate(0deg);";
+      pac.style.animationPlayState = "running";
     }
 
     return { nextMovePos, direction: this.dir };
