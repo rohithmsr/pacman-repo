@@ -27,6 +27,15 @@ class Pacman {
   getNextMove(objectExists) {
     let nextMovePos = this.pos + this.dir.movement;
 
+    //Corridor
+    if (this.pos === 220 && this.dir.code === 37) {
+      nextMovePos = 239;
+    }
+    if (this.pos === 239 && this.dir.code === 39) {
+      nextMovePos = 220;
+    }
+    //Corridor
+
     if (
       objectExists(nextMovePos, OBJECT_TYPE.WALL) ||
       objectExists(nextMovePos, OBJECT_TYPE.GHOSTLAIR)
