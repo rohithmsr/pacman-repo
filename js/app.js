@@ -6,9 +6,9 @@ import Pacman from "./pacman";
 import Ghost from "./ghost";
 
 const gameGrid = document.querySelector("#game");
-const scoreTable = document.querySelector("#score");
 const startButton = document.querySelector("#start-button");
 const currentScore = document.querySelector("#current-score");
+
 const highScore = document.querySelector("#high-score");
 
 const POWER_PILL_TIME = 10000; // milliseconds
@@ -19,15 +19,23 @@ const POWER_PILL_SCORE = 50;
 const GHOST_COMBO_SCORE = 200;
 
 let score = 0;
+let topScore = localStorage.getItem("pacman-top-score") || 0;
 let timer = null;
 let gameWin = false;
 let powerPillActive = false;
 let powerPillTimer = null;
 
-function gameOver(pacman, grid) {
+highScore.innerText = `HIGHSCORE = ${topScore}`;
+
+function gameOver(pacman) {
   document.removeEventListener("keydown", (e) =>
     pacman.handleKeyInput(e, gameBoard.objectExists.bind(gameBoard))
   );
+
+  if (score >= topScore) {
+    localStorage.setItem("pacman-top-score", score);
+    topScore = score;
+  }
 
   gameBoard.showGameStatus(gameWin);
 
@@ -63,7 +71,7 @@ function checkCollision(pacman, ghosts) {
       gameBoard.removeObject(pacman.pos, [OBJECT_TYPE.PACMAN]);
       gameBoard.rotateDiv(pacman.pos, 0);
       //   console.warn("Collided, game over!");
-      gameOver(pacman, gameGrid);
+      gameOver(pacman);
     }
   }
 }
@@ -108,11 +116,15 @@ function gameLoop(pacman, ghosts) {
   // Check if all dots have been eaten
   if (gameBoard.dotCount === 0) {
     gameWin = true;
-    gameOver(pacman, gameGrid);
+    gameOver(pacman);
+  }
+
+  if (score >= topScore) {
+    topScore = score;
   }
   // Show new score
   currentScore.innerText = `SCORE = ${score}`;
-  highScore.innerText = `HIGHSCORE = ${score}`;
+  highScore.innerText = `HIGHSCORE = ${topScore}`;
 }
 
 function startGame() {
