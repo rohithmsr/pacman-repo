@@ -44,7 +44,7 @@ class Pacman {
     ) {
       nextMovePos = this.pos;
 
-      pac.style.animationPlayState = "paused";
+      // pac.style.animationPlayState = "paused";
       if (this.dir.code === 37) {
         pac.style.tranform = "transform: rotate(180deg);";
       } else if (this.dir.code === 38) {
@@ -56,7 +56,7 @@ class Pacman {
       }
     } else {
       pac.style.tranform = "transform: rotate(0deg);";
-      pac.style.animationPlayState = "running";
+      // pac.style.animationPlayState = "running";
     }
 
     return { nextMovePos, direction: this.dir };

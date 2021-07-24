@@ -1,9 +1,17 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 @font-face {
   font-family: "Quadrit";
   src: url("../fonts/Quadrit.ttf");
 }
 
 * {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   font-family: Quadrit, sans-serif;
 }
@@ -15,9 +23,18 @@ body {
 
 #wrapper {
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
 }
 
@@ -27,8 +44,14 @@ body {
 }
 
 #score {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: space-evenly;
+  -ms-flex-pack: space-evenly;
   justify-content: space-evenly;
   width: 60vw;
   min-width: 460px;
@@ -43,6 +66,7 @@ body {
 
 #game {
   position: relative;
+  display: -ms-inline-grid;
   display: inline-grid;
   background: black;
   padding: 10px;
@@ -64,8 +88,14 @@ body {
   position: absolute;
   top: 0;
   left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
   width: 100%;
   height: 90%;
@@ -73,6 +103,7 @@ body {
   color: red;
   font-size: 1.5rem;
   margin-bottom: 20px;
+  -webkit-animation: move-status 1s linear forwards;
   animation: move-status 1s linear forwards;
 }
 
@@ -81,6 +112,7 @@ body {
 }
 
 .blink_me {
+  -webkit-animation: blinker 1s linear infinite;
   animation: blinker 1s linear infinite;
 }
 
@@ -165,6 +197,15 @@ body {
   background: yellow;
   border: none;
   border-radius: 50%;
+  -webkit-clip-path: polygon(
+    0 0,
+    20px 0,
+    20px -5px,
+    8px 10px,
+    20px 25px,
+    20px 20px,
+    0 20px
+  );
   clip-path: polygon(
     0 0,
     20px 0,
@@ -175,7 +216,15 @@ body {
     0 20px
   );
 
+  -webkit-animation: chew 0.3s linear forwards;
+
   animation: chew 0.3s linear forwards;
+}
+
+@-webkit-keyframes blinker {
+  50% {
+    opacity: 0;
+  }
 }
 
 @keyframes blinker {
@@ -184,8 +233,17 @@ body {
   }
 }
 
-@keyframes chew {
+@-webkit-keyframes chew {
   50% {
+    -webkit-clip-path: polygon(
+      0 0,
+      20px 0,
+      20px 10px,
+      8px 10px,
+      20px 10px,
+      20px 20px,
+      0 20px
+    );
     clip-path: polygon(
       0 0,
       20px 0,
@@ -195,6 +253,38 @@ body {
       20px 20px,
       0 20px
     );
+  }
+}
+
+@keyframes chew {
+  50% {
+    -webkit-clip-path: polygon(
+      0 0,
+      20px 0,
+      20px 10px,
+      8px 10px,
+      20px 10px,
+      20px 20px,
+      0 20px
+    );
+    clip-path: polygon(
+      0 0,
+      20px 0,
+      20px 10px,
+      8px 10px,
+      20px 10px,
+      20px 20px,
+      0 20px
+    );
+  }
+}
+
+@-webkit-keyframes move-status {
+  50% {
+    height: 70%;
+  }
+  100% {
+    height: 50%;
   }
 }
 

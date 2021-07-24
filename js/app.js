@@ -12,7 +12,7 @@ const currentScore = document.querySelector("#current-score");
 const highScore = document.querySelector("#high-score");
 
 const POWER_PILL_TIME = 10000; // milliseconds
-const GLOBAL_SPEED = 100;
+const GLOBAL_SPEED = 50;
 const gameBoard = Board.createGameBoard(gameGrid, MAZE);
 const DOT_SCORE = 10;
 const POWER_PILL_SCORE = 50;
@@ -31,11 +31,6 @@ function gameOver(pacman) {
   document.removeEventListener("keydown", (e) =>
     pacman.handleKeyInput(e, gameBoard.objectExists.bind(gameBoard))
   );
-
-  if (score >= topScore) {
-    localStorage.setItem("pacman-top-score", score);
-    topScore = score;
-  }
 
   gameBoard.showGameStatus(gameWin);
 
@@ -113,18 +108,19 @@ function gameLoop(pacman, ghosts) {
     ghosts.forEach((ghost) => (ghost.isScared = pacman.powerPill));
   }
 
+  if (score >= topScore) {
+    topScore = score;
+    localStorage.setItem("pacman-top-score", topScore);
+  }
+  // Show new score
+  currentScore.innerText = `SCORE = ${score}`;
+  highScore.innerText = `HIGHSCORE = ${topScore}`;
+
   // Check if all dots have been eaten
   if (gameBoard.dotCount === 0) {
     gameWin = true;
     gameOver(pacman);
   }
-
-  if (score >= topScore) {
-    topScore = score;
-  }
-  // Show new score
-  currentScore.innerText = `SCORE = ${score}`;
-  highScore.innerText = `HIGHSCORE = ${topScore}`;
 }
 
 function startGame() {
