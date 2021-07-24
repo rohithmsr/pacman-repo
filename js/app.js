@@ -1,4 +1,4 @@
-import { MAZE, OBJECT_TYPE } from "../starter";
+import { MAZE, OBJECT_TYPE } from "./starter";
 import { randomMovement } from "./movement";
 
 import Board from "./board";
@@ -153,3 +153,7 @@ function startGame() {
 
 // Initialize Game
 startButton.addEventListener("click", startGame);
+
+if (module.hot) {
+  module.hot.accept();
+}

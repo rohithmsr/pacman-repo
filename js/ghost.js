@@ -1,4 +1,4 @@
-import { OBJECT_TYPE, DIRECTIONS } from "../starter";
+import { OBJECT_TYPE, DIRECTIONS } from "./starter";
 
 class Ghost {
   constructor(speed = 5, startPos, movement, name) {
