@@ -2,10 +2,10 @@
   "name": "pacman-repo",
   "version": "1.0.0",
   "description": "Here's yet another clone of Pacman",
-  "main": "index.html",
+  "default": "index.html",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html"
+    "build": "parcel build index.html --dist-dir ./dist"
   },
   "repository": {
     "type": "git",
