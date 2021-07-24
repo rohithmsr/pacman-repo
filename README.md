@@ -2,9 +2,9 @@
 
 ## Description
 
-   Pacman - A mini version implemented by scratch using HTML, CSS and JS without the use of any game engines. 
-   This game was built to refresh my HTML, CSS and JavaScript skills. Check out the live demo [here](https://pacman-by-rohithmsr.netlify.app/)
-        
+Pacman - A mini version implemented by scratch using HTML, CSS and JS without the use of any game engines.
+This game was built to refresh my HTML, CSS and JavaScript skills. Check out the live demo [here](https://pacman-by-rohithmsr.netlify.app/)
+
 ## Preview
 
 <p align="center">
@@ -13,9 +13,7 @@
 
 ## Future Scope
 
- - Implement Ghost AI
- - Add Extra lives and levels
- - Sound Effects
- - Make Mobile-friendly too
- 
- 
+- Implement Ghost AI (As of now, random movement algorithm is used and the ghosts can collide with each other. Ofcource, not Pacman xD)
+- Add Extra lives and levels
+- Sound Effects
+- Make Mobile-friendly too
