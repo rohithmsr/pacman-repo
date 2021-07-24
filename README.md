@@ -2,8 +2,8 @@
 
 ## Description
 
-        Pacman - A mini version implemented by scratch using HTML, CSS and JS without the use of any game engines. 
-        This game was built to refresh my HTML, CSS and JavaScript skills.
+   Pacman - A mini version implemented by scratch using HTML, CSS and JS without the use of any game engines. 
+   This game was built to refresh my HTML, CSS and JavaScript skills. Check out the live demo [here](https://pacman-by-rohithmsr.netlify.app/)
         
 ## Preview
 
