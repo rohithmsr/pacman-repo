@@ -24,8 +24,7 @@
     "url": "https://github.com/rohithmsr/pacman-repo/issues"
   },
   "homepage": "https://github.com/rohithmsr/pacman-repo#readme",
-  "dependencies": {},
   "devDependencies": {
-    "parcel": "^2.0.0-beta.2"
+    "parcel": "^2.2.0"
   }
 }
