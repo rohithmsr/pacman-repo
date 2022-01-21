@@ -1,10 +1,22 @@
 import { MAZE, OBJECT_TYPE } from "./starter";
 import { randomMovement } from "./movement";
+import { handleGesture } from "./swipe-events";
 
 import Board from "./board";
 import Pacman from "./pacman";
 import Ghost from "./ghost";
 
+// For Swipe 
+// Refered from = https://gist.github.com/SleepWalker/da5636b1abcbaff48c4d
+let pageWidth = window.innerWidth || document.body.clientWidth;
+let threshold = Math.max(1, Math.floor(0.01 * (pageWidth)));
+let touchstartX = 0;
+let touchstartY = 0;
+let touchendX = 0;
+let touchendY = 0;
+//
+
+// Game Constants
 const gameGrid = document.querySelector("#game");
 const startButton = document.querySelector("#start-button");
 const currentScore = document.querySelector("#current-score");
@@ -31,6 +43,15 @@ function gameOver(pacman) {
   document.removeEventListener("keydown", (e) =>
     pacman.handleKeyInput(e, gameBoard.objectExists.bind(gameBoard))
   );
+  document.removeEventListener('touchstart', function (e) {
+    touchstartX = e.changedTouches[0].screenX;
+    touchstartY = e.changedTouches[0].screenY;
+  }, false);
+  document.removeEventListener('touchend', function (e) {
+    touchendX = e.changedTouches[0].screenX;
+    touchendY = e.changedTouches[0].screenY;
+    handleGesture(e, touchstartX, touchstartY, touchendX, touchendY, threshold);
+  }, false);
 
   gameBoard.showGameStatus(gameWin);
 
@@ -139,6 +160,15 @@ function startGame() {
   document.addEventListener("keydown", (e) => {
     pacman.handleKeyInput(e, gameBoard.objectExists.bind(gameBoard));
   });
+  document.addEventListener('touchstart', function (e) {
+    touchstartX = e.changedTouches[0].screenX;
+    touchstartY = e.changedTouches[0].screenY;
+  }, false);
+  document.addEventListener('touchend', function (e) {
+    touchendX = e.changedTouches[0].screenX;
+    touchendY = e.changedTouches[0].screenY;
+    handleGesture(e, touchstartX, touchstartY, touchendX, touchendY, threshold);
+  }, false);
 
   // diff speed ghosts
   const ghosts = [
