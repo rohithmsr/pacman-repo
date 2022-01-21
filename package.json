@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Here's yet another clone of Pacman",
   "default": "index.html",
+  "engines": {
+    "npm": ">=8.0.0",
+    "node": ">=16.0.0"
+  },
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.html --dist-dir ./dist"
