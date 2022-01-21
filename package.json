@@ -2,7 +2,6 @@
   "name": "pacman-repo",
   "version": "1.0.0",
   "description": "Here's yet another clone of Pacman",
-  "default": "index.html",
   "engines": {
     "npm": ">=8.0.0",
     "node": ">=16.0.0"
