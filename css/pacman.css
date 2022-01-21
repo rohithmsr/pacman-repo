@@ -206,3 +206,68 @@ body {
     height: 50%;
   }
 }
+
+/* For Mobile Portrait View */
+@media screen and (max-device-width: 480px) and (orientation: portrait) {
+  #score {
+    flex-direction: column;
+    width: 60%;
+    height: 110px;
+  }
+
+  #wrapper {
+    width: 120%;
+  }
+}
+
+/* For Mobile Phones Portrait or Landscape View */
+@media screen and (max-device-width: 640px) {
+  #score {
+    flex-direction: column;
+    width: 60%;
+    height: 110px;
+  }
+
+  #wrapper {
+    width: 120%;
+  }
+}
+
+/* For iPhone 4 Portrait or Landscape View */
+@media screen and (min-device-width: 320px) and (-webkit-min-device-pixel-ratio: 2) {
+  #score {
+    flex-direction: column;
+    width: 60%;
+    height: 110px;
+  }
+
+  #wrapper {
+    width: 120%;
+  }
+}
+
+/* For iPhone 5 Portrait or Landscape View */
+@media (device-height: 568px) and (device-width: 320px) and (-webkit-min-device-pixel-ratio: 2) {
+  #score {
+    flex-direction: column;
+    width: 60%;
+    height: 110px;
+  }
+
+  #wrapper {
+    width: 120%;
+  }
+}
+
+/* For iPhone 6 and 6 plus Portrait or Landscape View */
+@media (min-device-height: 667px) and (min-device-width: 375px) and (-webkit-min-device-pixel-ratio: 3) {
+  #score {
+    flex-direction: column;
+    width: 60%;
+    height: 110px;
+  }
+
+  #wrapper {
+    width: 120%;
+  }
+}
