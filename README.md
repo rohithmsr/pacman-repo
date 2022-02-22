@@ -7,10 +7,8 @@ This game was built to refresh my HTML, CSS and JavaScript skills. Check out the
 
 ## Preview
 
-<p align="center">
-  <a href="https://drive.google.com/uc?export=view&id=1h-bnD10sZWPosMItSnvwAITE91tOKD0-">Click here to view a short demo</a> 
-  <img width="460" height="300" src="https://drive.google.com/uc?export=view&id=1h-bnD10sZWPosMItSnvwAITE91tOKD0-" alt="Demo" >
-</p>
+![Demo Video](https://user-images.githubusercontent.com/64753877/155069007-cfc4e32d-7c14-4320-9399-2edc91e09e41.gif)
+
 
 ## Future Scope
 
