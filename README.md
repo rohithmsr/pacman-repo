@@ -8,7 +8,8 @@ This game was built to refresh my HTML, CSS and JavaScript skills. Check out the
 ## Preview
 
 <p align="center">
-  <img width="460" height="300" src="https://drive.google.com/uc?export=view&id=1h-bnD10sZWPosMItSnvwAITE91tOKD0-" alt="Click here to view a short demo" >
+  <a href="https://drive.google.com/uc?export=view&id=1h-bnD10sZWPosMItSnvwAITE91tOKD0-">Click here to view a short demo</a> 
+  <img width="460" height="300" src="https://drive.google.com/uc?export=view&id=1h-bnD10sZWPosMItSnvwAITE91tOKD0-" alt="Demo" >
 </p>
 
 ## Future Scope
@@ -16,4 +17,3 @@ This game was built to refresh my HTML, CSS and JavaScript skills. Check out the
 - Implement Ghost AI (As of now, random movement algorithm is used and the ghosts can collide with each other. Ofcource, not Pacman xD)
 - Add Extra lives and levels
 - Sound Effects
-- Make Mobile-friendly too
