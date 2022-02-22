@@ -8,7 +8,7 @@ This game was built to refresh my HTML, CSS and JavaScript skills. Check out the
 ## Preview
 
 <p align="center">
-  <img width="460" height="300" src="https://drive.google.com/uc?export=view&id=1h-bnD10sZWPosMItSnvwAITE91tOKD0-" alt="Preview Demo GIF" >
+  <img width="460" height="300" src="https://drive.google.com/uc?export=view&id=1h-bnD10sZWPosMItSnvwAITE91tOKD0-" alt="Click here to view a short demo" >
 </p>
 
 ## Future Scope
